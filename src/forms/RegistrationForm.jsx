@@ -3,6 +3,7 @@ import Field from "../components/Field";
 import FieldSet from "../components/FieldSet";
 
 export default function RegistrationForm() {
+  //TODO: 1hr 20min
   const {
     register,
     handleSubmit,
@@ -99,10 +100,37 @@ export default function RegistrationForm() {
         </FieldSet>
 
         <FieldSet label="Enter Social Handles">
-          {fields.map((field, idx) => {
-            return <div key={field.id} className="">
-                {field}
-            </div>;
+          {fields.map((field, index) => {
+            return (
+              <div
+                key={field.id}
+                className="flex justify-between items-center w-max"
+              >
+                <Field label="Social Name">
+                  <input
+                    {...register(`socials[${index}].name`, {
+                      required: "Social Name is required.",
+                    })}
+                    className="p-2 border box-border w-[300px] rounded-md"
+                    type="text"
+                    name={`socials[${index}].name`}
+                    id={`socials[${index}].name`}
+                  />
+                </Field>
+                <Field label="Social Url">
+                  <input
+                    {...register(`socials[${index}].url`, {
+                      required: "Social Url is required.",
+                    })}
+                    className="p-2 border box-border w-[300px] rounded-md"
+                    type="text"
+                    name={`socials[${index}].url`}
+                    id={`socials[${index}].url`}
+                  />
+                </Field>
+                <button onClick={() => remove(index)}>&#8722;</button>
+              </div>
+            );
           })}
           <button
             className="mt-8 text-md text-white cursor-pointer border rounded-lg bg-gray-500 p-1 m-auto"
